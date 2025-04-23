@@ -25,23 +25,23 @@ public class TagController {
         List<Tag> all = tagService.getAll();
         return new ResponseEntity<>(all, HttpStatus.OK);
     }
-    @GetMapping
-    public HttpEntity<?> getById(Integer id){
+    @GetMapping("/{id}")
+    public HttpEntity<?> getById(@PathVariable Integer id){
         Tag account = tagService.getById(id);
         return new ResponseEntity<>(account, HttpStatus.OK);
     }
     @PostMapping
-    public HttpEntity<?> create(TagDto tagDto){
+    public HttpEntity<?> create(@RequestBody TagDto tagDto){
         Result result = tagService.create(tagDto);
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
-    @PutMapping
-    public HttpEntity<?> update(Integer id, TagDto tagDto){
+    @PutMapping("/{id}")
+    public HttpEntity<?> update(@PathVariable Integer id, @RequestBody TagDto tagDto){
         Result result = tagService.update(id, tagDto);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
-    @DeleteMapping
-    public HttpEntity<?> delete(Integer id){
+    @DeleteMapping("/{id}")
+    public HttpEntity<?> delete(@PathVariable Integer id){
         Result result = tagService.delete(id);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }

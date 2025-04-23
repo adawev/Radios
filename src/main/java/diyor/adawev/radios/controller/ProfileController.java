@@ -25,23 +25,23 @@ public class ProfileController {
         List<Profile> all = profileService.getAll();
         return new ResponseEntity<>(all, HttpStatus.OK);
     }
-    @GetMapping
-    public HttpEntity<?> getById(Integer id){
+    @GetMapping("/{id}")
+    public HttpEntity<?> getById(@PathVariable Integer id){
         Profile account = profileService.getById(id);
         return new ResponseEntity<>(account, HttpStatus.OK);
     }
     @PostMapping
-    public HttpEntity<?> create(ProfileDto profileDto){
+    public HttpEntity<?> create(@RequestBody ProfileDto profileDto){
         Result result = profileService.create(profileDto);
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
-    @PutMapping
-    public HttpEntity<?> update(Integer id, ProfileDto profileDto){
+    @PutMapping("/{id}")
+    public HttpEntity<?> update(@PathVariable Integer id, @RequestBody ProfileDto profileDto){
         Result result = profileService.update(id, profileDto);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
-    @DeleteMapping
-    public HttpEntity<?> delete(Integer id){
+    @DeleteMapping("/{id}")
+    public HttpEntity<?> delete(@PathVariable Integer id){
         Result result = profileService.delete(id);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }

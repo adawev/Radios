@@ -25,23 +25,23 @@ public class AboutUsController {
         List<AboutUs> all = aboutUsService.getAll();
         return new ResponseEntity<>(all, HttpStatus.OK);
     }
-    @GetMapping
-    public HttpEntity<?> getById(Integer id){
+    @GetMapping("/{id}")
+    public HttpEntity<?> getById(@PathVariable Integer id){
         AboutUs account = aboutUsService.getById(id);
         return new ResponseEntity<>(account, HttpStatus.OK);
     }
     @PostMapping
-    public HttpEntity<?> create(AboutUsDto aboutUsDto){
+    public HttpEntity<?> create(@RequestBody AboutUsDto aboutUsDto){
         Result result = aboutUsService.create(aboutUsDto);
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
-    @PutMapping
-    public HttpEntity<?> update(Integer id, AboutUsDto aboutUsDto){
+    @PutMapping("/{id}")
+    public HttpEntity<?> update(@PathVariable Integer id, @RequestBody AboutUsDto aboutUsDto){
         Result result = aboutUsService.update(id, aboutUsDto);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
-    @DeleteMapping
-    public HttpEntity<?> delete(Integer id){
+    @DeleteMapping("/{id}")
+    public HttpEntity<?> delete(@PathVariable Integer id){
         Result result = aboutUsService.delete(id);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }

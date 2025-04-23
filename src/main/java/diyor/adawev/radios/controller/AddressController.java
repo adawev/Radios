@@ -25,23 +25,23 @@ public class AddressController {
         List<Address> all = addressService.getAll();
         return new ResponseEntity<>(all, HttpStatus.OK);
     }
-    @GetMapping
-    public HttpEntity<?> getById(Integer id){
+    @GetMapping("/{id}")
+    public HttpEntity<?> getById(@PathVariable Integer id){
         Address product = addressService.getById(id);
         return new ResponseEntity<>(product, HttpStatus.OK);
     }
     @PostMapping
-    public HttpEntity<?> create(AddressDto addressDto){
+    public HttpEntity<?> create(@RequestBody AddressDto addressDto){
         Result result = addressService.create(addressDto);
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
-    @PutMapping
-    public HttpEntity<?> update(Integer id, AddressDto addressDto){
+    @PutMapping("/{id}")
+    public HttpEntity<?> update(@PathVariable Integer id, @RequestBody AddressDto addressDto){
         Result result = addressService.update(id, addressDto);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
-    @DeleteMapping
-    public HttpEntity<?> delete(Integer id){
+    @DeleteMapping("/{id}")
+    public HttpEntity<?> delete(@PathVariable Integer id){
         Result result = addressService.delete(id);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }

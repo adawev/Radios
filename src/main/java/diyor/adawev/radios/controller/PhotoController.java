@@ -25,23 +25,23 @@ public class PhotoController {
         List<Photo> all = photoService.getAll();
         return new ResponseEntity<>(all, HttpStatus.OK);
     }
-    @GetMapping
-    public HttpEntity<?> getById(Integer id){
+    @GetMapping("/{id}")
+    public HttpEntity<?> getById(@PathVariable Integer id){
         Photo product = photoService.getById(id);
         return new ResponseEntity<>(product, HttpStatus.OK);
     }
     @PostMapping
-    public HttpEntity<?> create(PhotoDto photoDto){
+    public HttpEntity<?> create(@RequestBody PhotoDto photoDto){
         Result result = photoService.create(photoDto);
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
-    @PutMapping
-    public HttpEntity<?> update(Integer id, PhotoDto photoDto){
+    @PutMapping("/{id}")
+    public HttpEntity<?> update(@PathVariable Integer id, @RequestBody PhotoDto photoDto){
         Result result = photoService.update(id, photoDto);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
-    @DeleteMapping
-    public HttpEntity<?> delete(Integer id){
+    @DeleteMapping("/{id}")
+    public HttpEntity<?> delete(@PathVariable Integer id){
         Result result = photoService.delete(id);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }

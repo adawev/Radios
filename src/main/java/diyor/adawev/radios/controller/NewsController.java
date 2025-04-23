@@ -25,23 +25,23 @@ public class NewsController {
         List<News> all = newsService.getAll();
         return new ResponseEntity<>(all, HttpStatus.OK);
     }
-    @GetMapping
-    public HttpEntity<?> getById(Integer id){
+    @GetMapping("/{id}")
+    public HttpEntity<?> getById(@PathVariable Integer id){
         News account = newsService.getById(id);
         return new ResponseEntity<>(account, HttpStatus.OK);
     }
     @PostMapping
-    public HttpEntity<?> create(NewsDto newsDto){
+    public HttpEntity<?> create(@RequestBody NewsDto newsDto){
         Result result = newsService.create(newsDto);
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
-    @PutMapping
-    public HttpEntity<?> update(Integer id, NewsDto newsDto){
+    @PutMapping("/{id}")
+    public HttpEntity<?> update(@PathVariable Integer id, @RequestBody NewsDto newsDto){
         Result result = newsService.update(id, newsDto);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
-    @DeleteMapping
-    public HttpEntity<?> delete(Integer id){
+    @DeleteMapping("/{id}")
+    public HttpEntity<?> delete(@PathVariable Integer id){
         Result result = newsService.delete(id);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }

@@ -25,23 +25,23 @@ public class CommentController {
         List<Comment> all = commentService.getAll();
         return new ResponseEntity<>(all, HttpStatus.OK);
     }
-    @GetMapping
-    public HttpEntity<?> getById(Integer id){
+    @GetMapping("/{id}")
+    public HttpEntity<?> getById(@PathVariable Integer id){
         Comment account = commentService.getById(id);
         return new ResponseEntity<>(account, HttpStatus.OK);
     }
     @PostMapping
-    public HttpEntity<?> create(CommentDto commentDto){
+    public HttpEntity<?> create(@RequestBody CommentDto commentDto){
         Result result = commentService.create(commentDto);
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
-    @PutMapping
-    public HttpEntity<?> update(Integer id, CommentDto commentDto){
+    @PutMapping("/{id}")
+    public HttpEntity<?> update(@PathVariable Integer id, @RequestBody CommentDto commentDto){
         Result result = commentService.update(id, commentDto);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
-    @DeleteMapping
-    public HttpEntity<?> delete(Integer id){
+    @DeleteMapping("/{id}")
+    public HttpEntity<?> delete(@PathVariable Integer id){
         Result result = commentService.delete(id);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
